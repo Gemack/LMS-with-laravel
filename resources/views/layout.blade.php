@@ -21,7 +21,7 @@
 
         <section class="flex">
 
-            <a href="home.html" class="logo">Educa.</a>
+            <a href="home.html" class="logo">GEMS</a>
 
             <form action="search.html" method="post" class="search-form">
                 <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
@@ -35,18 +35,28 @@
                 <div id="toggle-btn" class="fas fa-sun"></div>
             </div>
 
+
             <div class="profile">
-                <img src="images/pic-1.jpg" class="image" alt="">
-                <h3 class="name">shaikh anas</h3>
-                <p class="role">studen</p>
-                <a href="/logout" class="btn">Logout</a>
-                <div class="flex-btn">
-                    <a href="/login_page" class="option-btn">login</a>
-                    <a href="/register" class="option-btn">register</a>
-                </div>
+                @if (auth()->user())
+                    <img src="{{ auth()->user()->photo ? auth()->user()->photo : 'images/pic-1.jpg' }}" class="image"
+                        alt="user profile photo">
+                    <h3 class="name">{{ auth()->user()->name }}</h3>
+                    <p class="role">student</p>
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button type="submit" class="btn">Logout</button>
+                    </form>
+                @else
+                    <img src="images/pic-1.jpg" class="image" alt="">
+                    <div class="flex-btn">
+                        <a href="/login_page" class="option-btn">login</a>
+                        <a href="/register" class="option-btn">register</a>
+                    </div>
+                @endif
             </div>
 
         </section>
+
 
     </header>
 
@@ -55,20 +65,28 @@
         <div id="close-btn">
             <i class="fas fa-times"></i>
         </div>
+        @if (auth()->user())
+            <div class="profile">
+                <img src="{{ auth()->user()->photo ? auth()->user()->photo : 'images/pic-1.jpg' }}" class="image"
+                    alt="user profile photo">
+                <h3 class="name">{{ auth()->user()->name }}</h3>
+                <p class="role">student</p>
+                <a href="/update" class="btn">Update Profile</a>
+            </div>
+        @else
+            <div class="profile">
+                <img src="images/pic-1.jpg" class="image" alt="">
+                <p class="not_log">You are not logged in</p>
+            </div>
+        @endif
 
-        <div class="profile">
-            <img src="images/pic-1.jpg" class="image" alt="">
-            <h3 class="name">shaikh anas</h3>
-            <p class="role">studen</p>
-            <a href="profile.html" class="btn">view profile</a>
-        </div>
 
         <nav class="navbar">
             <a href="/"><i class="fas fa-home"></i><span>home</span></a>
             <a href="/about"><i class="fas fa-question"></i><span>about</span></a>
-            <a href="/courses"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
-            <a href="teachers.html"><i class="fas fa-chalkboard-user"></i><span>teachers</span></a>
-            <a href="contact.html"><i class="fas fa-headset"></i><span>contact us</span></a>
+            <a href="/course"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
+            <a href="/course_form"><i class="fa-solid fa-pen-to-square"></i><span> add courses</span></a>
+
         </nav>
 
     </div>

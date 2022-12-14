@@ -30,8 +30,8 @@
                 <p class="error" style="color: red">{{ $message }}</p>
             @enderror
             <p>select profile <span>*</span></p>
-            <input type="file" accept="image/*">
-            <input type="submit" value="register new" name="submit" class="btn">
+            <input type="file" name="photo">
+            <input type="submit" name="submit" class="btn">
 
         </form>
 

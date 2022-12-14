@@ -1,17 +1,25 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\CourseController;
 
 
 Route::get('/', [homeController::class, 'home']);
 Route::get('/about', [homeController::class, 'about']);
-Route::get('/courses', [homeController::class, 'courses']);
-Route::get('/login', [homeController::class, 'login']);
+
+
+
+
+
 
 // User registration page
 Route::get('/register',[AuthController::class, 'create']);
+
+// logout student
+
+Route::post('/logout', [AuthController::class, 'logout']);
 
 //  student registration form
 
@@ -19,7 +27,11 @@ Route::post('/users',[AuthController::class, 'store']);
 
 Route::get('/login_page', [AuthController::class, 'loginform']);
 Route::post('/login',[AuthController::class, 'login']);
+// Update user profile
+Route::get('/update', [AuthController::class, 'update']);
+Route::put('/update/user/{id}', [AuthController::class, 'updateUser']);
 
-// logout student
 
-Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/course', [CourseController::class, 'index']);
+Route::get('/course_form',[CourseController::class, 'courses']);
+Route::post('/add_course', [CourseController::class, 'store']);

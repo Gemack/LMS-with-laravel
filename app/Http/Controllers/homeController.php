@@ -13,8 +13,5 @@ class homeController extends Controller
    public function about(){
     return view('pages.about');
    }
-   public function courses(){
-    return view('pages.courses');
-   }
-
+ 
 }
