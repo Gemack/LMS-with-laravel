@@ -9,8 +9,20 @@ use Intervention\Image\Facades\Image;
 class CourseController extends Controller
 {
     public function index(){
-        return view('pages.courses.course');
+        $course = Course::get();
+        return view('pages.courses.course',[
+            'courses'=> $course
+        ]);
        }
+
+    public function show($id){
+        $course = Course::find($id);
+   
+
+    }
+
+
+    
     public function courses(){
         return view('pages.courses.addCourse');
        }
@@ -40,5 +52,18 @@ class CourseController extends Controller
     
             return redirect('/course'); 
     }
+
+
+    public function destroy($id)
+    {
+     $course =Course::find($id);
+     $old_img = $course->photo;
+     unlink($old_img);
+
+     Course::find($id)->delete();
+        
+     return redirect('/course'); 
+    }
+ 
     
 }

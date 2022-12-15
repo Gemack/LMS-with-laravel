@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\CourseController;
-
+use App\Http\Controllers\EnrollController;
 
 Route::get('/', [homeController::class, 'home']);
 Route::get('/about', [homeController::class, 'about']);
@@ -35,3 +35,5 @@ Route::put('/update/user/{id}', [AuthController::class, 'updateUser']);
 Route::get('/course', [CourseController::class, 'index']);
 Route::get('/course_form',[CourseController::class, 'courses']);
 Route::post('/add_course', [CourseController::class, 'store']);
+
+Route::post('/course/{id}/enroll',[EnrollController::class, 'store']);
