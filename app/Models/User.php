@@ -51,6 +51,6 @@ class User extends Authenticatable
     }
 
     public function totalEnroll(){
-        return $this->hasManyThrough(Enroll::class, Course::class);
+        return $this->belongsTo(Enroll::class);
     }
 }

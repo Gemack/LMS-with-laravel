@@ -3,7 +3,7 @@
 @section('content')
     <section class="home-grid">
 
-        <h1 class="heading">quick options</h1>
+        <h1 class="heading"> </h1>
 
         <div class="box-container">
 

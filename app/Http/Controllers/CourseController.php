@@ -8,13 +8,13 @@ use Intervention\Image\Facades\Image;
 // This controller  handles all courses in the database
 class CourseController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+
         $course = Course::get();
         return view('pages.courses.course',[
             'courses'=> $course
         ]);
        }
-    
     public function courses(){
         return view('pages.courses.addCourse');
        }

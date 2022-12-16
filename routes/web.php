@@ -36,4 +36,4 @@ Route::post('/course/{course}/enroll',[EnrollController::class, 'store']);
 
 // ============= TO DO NEXT -=======================
 
-//  implement middlewares
+//  implement middlewares for authentication and protected route
