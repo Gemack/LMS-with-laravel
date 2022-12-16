@@ -16,8 +16,14 @@ class Course extends Model
         'description'
     ];
 
-    // public function enroll()
-    // {
-    //     return $this->hasMany(Enroll::class);
-    // }
+    //  To check if a user has been enrolled in a course
+    public function enrolled(User $user){
+        return $this->enroll->contains('user_id', $user->id);
+        
+    }
+
+    public function enroll()
+    {
+        return $this->hasMany(Enroll::class);
+    }
 }

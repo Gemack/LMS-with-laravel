@@ -5,7 +5,7 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
-
+// This controller  handles all courses in the database
 class CourseController extends Controller
 {
     public function index(){
@@ -14,20 +14,13 @@ class CourseController extends Controller
             'courses'=> $course
         ]);
        }
-
-    public function show($id){
-        $course = Course::find($id);
-   
-
-    }
-
-
     
     public function courses(){
         return view('pages.courses.addCourse');
        }
+
+    //     This function create course in the database
     public function store(Request $request){
-        // dd($request);
         // Validate incomming request
         $fields = $request->validate([
             'title'=>'required',

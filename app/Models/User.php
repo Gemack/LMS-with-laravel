@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Course;
 use App\Models\Enroll;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -44,8 +45,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // public function enroll()
-    // {
-    //     return $this->hasMany(Enroll::class);
-    // }
+    public function enroll()
+    {
+        return $this->hasMany(Enroll::class);
+    }
+
+    public function totalEnroll(){
+        return $this->hasManyThrough(Enroll::class, Course::class);
+    }
 }

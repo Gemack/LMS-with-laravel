@@ -12,7 +12,12 @@
     <h3 class="title">{{ $props->title }}</h3>
     <form action="/course/{{ $props->id }}/enroll" method="POST">
         @csrf
-        <button type="submit" class="inline-btn">Enroll</button>
+        @if (!$props->enrolled(auth()->user()))
+            <button type="submit" class="inline-btn">Enroll</button>
+        @else
+            <p>already enrolled</p>
+        @endif
+
     </form>
 
 </div>

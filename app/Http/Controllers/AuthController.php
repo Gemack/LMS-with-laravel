@@ -1,10 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 use Intervention\Image\Facades\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+
+//  This controller handles users, users authorization and authentication
 
 class AuthController extends Controller
 {
@@ -12,6 +13,7 @@ class AuthController extends Controller
         return view('pages.register'); 
     }
 
+    //  This Function  Create new user 
     public function store(Request $request){
         $formFields = $request->validate([
             'name'=>['required', 'min:2'],
@@ -38,11 +40,13 @@ class AuthController extends Controller
         return redirect('/');
     }
 
+    //  Update user 
     public function update(){
         return view('pages.update');
        }
 
        
+    //    Update User Profile
     public function updateUser(Request $request, $id){ 
         
         $fields = $request->validate([
@@ -84,6 +88,7 @@ class AuthController extends Controller
         return view('pages.login');
        }
     
+    //    Log a user into the app
     public function login(Request $request){
         $formFields = $request->validate([
             'email'=>['required', 'email'],
@@ -100,6 +105,7 @@ class AuthController extends Controller
         return back()->withErrors(['email'=>'invalid Credentials'])->onlyInput('email');
     }
 
+    //  Log a user out of the app
     public function logout(Request $request){
         auth()->logout();
         $request->session()->invalidate();
