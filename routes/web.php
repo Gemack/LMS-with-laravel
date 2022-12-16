@@ -37,3 +37,4 @@ Route::post('/course/{course}/enroll',[EnrollController::class, 'store']);
 // ============= TO DO NEXT -=======================
 
 //  implement middlewares for authentication and protected route
+//  Create admin user authorized to add course
