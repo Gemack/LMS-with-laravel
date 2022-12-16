@@ -11,8 +11,7 @@ class homeController extends Controller
 {
    public function home(User $user){
    
-   $enroll = $user->totalEnroll();
-   dd($enroll);
+
     $course = Course::get();
      return view('pages.index',[
       'courses'=> $course
