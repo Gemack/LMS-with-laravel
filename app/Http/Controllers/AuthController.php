@@ -19,7 +19,7 @@ class AuthController extends Controller
             'name'=>['required', 'min:2'],
             'email'=>['required', 'email', Rule::unique('users', 'email')],
             'photo'=> 'mimes:jpg,jpeg,png',
-            'password'=>'required|confirmed|min:2'
+            'password'=>'required|confirmed|min:2'  // min:2 is for testing this will be expanded //
         ]);
 
         // Hash password
@@ -56,8 +56,10 @@ class AuthController extends Controller
      // Check if the user has a profile picture, resize and save picture in server
      if($request->hasFile('photo')){
         $file = $request->file('photo');
+        // get the file extension
         $extention = $file->getClientOriginalExtension();
         $filename =time().'.'.$extention;
+        //  image resizing 
         Image::make($file)->resize(300, 200)->save('profile/'. $filename, 100);
        
 
